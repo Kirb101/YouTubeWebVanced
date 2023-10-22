@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>YouTube WebVanced</title>
+    <link rel="icon" href="https://github.com/Kirb101/YouTubeWebVanced/blob/main/Icon@2x.png?raw=true" type="image/png">
+    <style>
+        body {
+            font-family: 'Segoe UI Emoji', sans-serif; /* Set font for the entire page */
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-color: black;
+            background-repeat: no-repeat;
+            position: relative;
+            height: 100vh;
+        }
+
+        body::before,
+        body::after {
+            content: "";
+            background-image: url('https://github.com/Kirb101/YouTubeWebVanced/blob/main/gradient.png?raw=true');
+            background-size: 100% 75px; /* Set background image height to 75 pixels */
+            position: absolute;
+            width: 100%;
+            height: 75px;
+            z-index: -1;
+        }
+
+        body::before {
+            top: 0;
+            transform: rotate(0deg);
+        }
+
+        body::after {
+            bottom: 0;
+            transform: rotate(180deg); /* Rotate the background image at the bottom */
+        }
+
+        .video-container {
+            position: relative;
+            width: 960px;
+            height: 540px;
+            overflow: hidden;
+            border-radius: 10px;
+            margin: 0 auto;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .ambient-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            filter: blur(5px); /* Apply a blur effect to the canvas */
+            z-index: -1;
+        }
+
+        .textbox {
+            font-family: 'Segoe UI Emoji', sans-serif; /* Set font for the text input */
+            position: absolute;
+            top: 75px; /* Adjusted the top position */
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto; /* Allow the width to adjust dynamically */
+            padding: 10px;
+            border: none;
+            border-radius: 50px; /* Fully round corners */
+            text-align: center;
+            font-size: 24pt; /* Set font size to 24pt */
+            background-color: #B6B6B4; /* Set background color */
+            transition: width 0.1s ease; /* Smooth transition on width change */
+        }
+    </style>
+</head>
+<body>
+    <input type="text" class="textbox" placeholder="TestText" oninput="adjustTextboxWidth(this)">
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/i_QQlrZo-6g" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <canvas class="ambient-canvas" id="ambient-canvas"></canvas>
+    <script>
+        var video = document.querySelector('iframe');
+        var canvas = document.getElementById("ambient-canvas");
+        var ctx = canvas.getContext("2d");
+
+        canvas.width = 960;
+        canvas.height = 540;
+
+        function getCurrentImage() {
+            try {
+                ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            } catch(e) {}
+        }
+
+        setInterval(getCurrentImage, 100);
+
+        function adjustTextboxWidth(element) {
+            element.style.width = (element.value.length * 20) + 'px';
+        }
+    </script>
+</body>
+</html>
