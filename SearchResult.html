@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Search Results</title>
+    <style>
+        body {
+            font-family: 'Segoe UI Emoji', sans-serif;
+            margin: 0;
+            background-color: #1c1c1c;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .search-results {
+            background-color: #333333;
+            padding: 20px;
+            border-radius: 15px;
+            transition: filter 0.3s;
+        }
+
+        .thumbnail {
+            width: 384px;
+            height: 216px;
+            background-color: #555555; 
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+
+        .video-title,
+        .uploader {
+            font-size: 24pt;
+            color: #ffffff;
+            text-align: center;
+        }
+
+        .uploader {
+            font-size: 12pt;
+            color: #ffffff;
+        }
+
+        .search-results:hover {
+            filter: brightness(115%);
+        }
+    </style>
+</head>
+<body>
+    <div class="search-results">
+        <div class="thumbnail"></div>
+        <div class="video-title">Video Title</div>
+        <div class="uploader">Uploader</div>
+    </div>
+</body>
+</html>
