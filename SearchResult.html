@@ -1,17 +1,29 @@
+<!DOCTYPE html>
 <html>
 <head>
+    <title>Search Results</title>
     <style>
+        body {
+            font-family: 'Segoe UI Emoji', sans-serif; /* Set font for the entire page */
+            margin: 0;
+            background-color: #000000; /* Dark grey background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
         .search-results {
-            background-color: #333333;
+            background-color: #333333; /* Slightly lighter grey */
             padding: 20px;
             border-radius: 15px;
-            transition: filter 0.3s;
+            transition: filter 0.3s; /* Add transition for smooth effect */
         }
 
         .thumbnail {
             width: 384px;
             height: 216px;
-            background-color: #555555; 
+            background-color: #555555; /* Placeholder color for thumbnail */
             border-radius: 10px;
             margin-bottom: 10px;
         }
@@ -20,7 +32,7 @@
         .uploader {
             font-size: 24pt;
             color: #ffffff;
-            text-align: center;
+            text-align: center; /* Center the text */
         }
 
         .uploader {
@@ -28,8 +40,9 @@
             color: #ffffff;
         }
 
+        /* Hover effect */
         .search-results:hover {
-            filter: brightness(115%);
+            filter: brightness(115%); /* Make the container 15% brighter on hover */
         }
     </style>
 </head>
@@ -38,6 +51,7 @@
         <div class="thumbnail"></div>
         <div class="video-title">Video Title</div>
         <div class="uploader">Uploader</div>
+        <!-- Add more thumbnails and info as needed -->
     </div>
 </body>
 </html>
