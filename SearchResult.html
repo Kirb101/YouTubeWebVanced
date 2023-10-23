@@ -6,7 +6,7 @@
         body {
             font-family: 'Segoe UI Emoji', sans-serif; /* Set font for the entire page */
             margin: 0;
-            background-color: #1c1c1c; /* Dark grey background */
+            background-color: #000000; /* Change the background color to black */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,17 +15,20 @@
 
         .search-results {
             display: flex;
-            flex-direction: column;
-            align-items: center;
+            gap: 50px; /* Add 50px spacing between search results */
         }
 
         .search-result {
             background-color: #333333; /* Slightly lighter grey */
             padding: 20px;
             border-radius: 15px;
-            margin-bottom: 20px; /* Add some space between search results */
             max-width: 500px; /* Limit the width of each result */
             width: 100%; /* Make sure each result takes full width */
+            transition: filter 0.3s; /* Add transition for hover effect */
+        }
+
+        .search-result:hover {
+            filter: brightness(115%); /* Brighten the result on hover */
         }
 
         .thumbnail {
