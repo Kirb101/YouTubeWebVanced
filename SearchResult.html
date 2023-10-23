@@ -6,7 +6,7 @@
         body {
             font-family: 'Segoe UI Emoji', sans-serif; /* Set font for the entire page */
             margin: 0;
-            background-color: #000000; /* Change the background color to black */
+            background-color: #1c1c1c; /* Dark grey background */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -54,19 +54,47 @@
 </head>
 <body>
     <div class="search-results">
-        <div class="search-result">
-            <div class="thumbnail"></div>
-            <div class="video-title">Video Title</div>
-            <div class="uploader">Uploader</div>
-        </div>
-
-        <div class="search-result">
-            <div class="thumbnail"></div>
-            <div class="video-title">Video Title</div>
-            <div class="uploader">Uploader</div>
-        </div>
-
-        <!-- Add more search results as needed -->
+        <!-- Results will be dynamically added here using JavaScript -->
     </div>
+
+    <script>
+        const apiKey = 'AIzaSyD349pUWvVZqdrqJ6yONckUcXpgJHPJV1I'; // Replace with your actual API key
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const searchQuery = urlParams.get('search');
+
+        // Use the API key to fetch search results from YouTube API
+        fetch(`https://www.googleapis.com/youtube/v3/search?key=${apiKey}&part=snippet&q=${searchQuery}&maxResults=2`, {
+            method: 'GET'
+        })
+        .then(response => response.json())
+        .then(data => {
+            const searchResultsContainer = document.querySelector('.search-results');
+
+            data.items.forEach(item => {
+                const resultElement = document.createElement('div');
+                resultElement.classList.add('search-result');
+
+                const thumbnail = document.createElement('div');
+                thumbnail.classList.add('thumbnail');
+                // Set the background image using item.snippet.thumbnails.high.url (from API response)
+
+                const videoTitle = document.createElement('div');
+                videoTitle.classList.add('video-title');
+                videoTitle.textContent = item.snippet.title;
+
+                const uploader = document.createElement('div');
+                uploader.classList.add('uploader');
+                uploader.textContent = item.snippet.channelTitle;
+
+                resultElement.appendChild(thumbnail);
+                resultElement.appendChild(videoTitle);
+                resultElement.appendChild(uploader);
+
+                searchResultsContainer.appendChild(resultElement);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    </script>
 </body>
 </html>
